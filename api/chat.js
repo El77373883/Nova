@@ -1,29 +1,21 @@
-import crypto from ‘crypto’;
+const crypto = require(‘crypto’);
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
 if (req.method !== ‘POST’) return res.status(405).end();
 
 const { question } = req.body;
 if (!question) return res.status(400).json({ error: ‘Falta la pregunta’ });
 
 try {
-// 1. Obtener knowledge.json desde R2
 const kvData = await fetchKnowledgeFromR2();
-
-```
-// 2. Buscar la mejor respuesta
 const answer = findBestMatch(question, kvData);
-
 res.status(200).json({ answer });
-```
-
 } catch (error) {
-console.error(error);
+console.error(‘ERROR NOVA:’, error.message);
 res.status(500).json({ answer: ‘Error al conectar con la base de conocimiento.’ });
 }
-}
+};
 
-// Descarga el knowledge.json del bucket R2
 async function fetchKnowledgeFromR2() {
 const endpoint  = process.env.R2_ENDPOINT;
 const bucket    = process.env.R2_BUCKET_NAME;
@@ -33,9 +25,13 @@ const region    = ‘auto’;
 const service   = ‘s3’;
 const file      = ‘knowledge.json’;
 
-const host    = new URL(endpoint).host;
-const now     = new Date();
-const amzDate = now.toISOString().replace(/[:-]|.\d{3}/g, ‘’).slice(0, 15) + ‘Z’;
+if (!endpoint || !bucket || !accessKey || !secretKey) {
+throw new Error(‘Faltan variables de entorno de R2’);
+}
+
+const host      = new URL(endpoint).host;
+const now       = new Date();
+const amzDate   = now.toISOString().replace(/[:-]|.\d{3}/g, ‘’).slice(0, 15) + ‘Z’;
 const dateStamp = amzDate.slice(0, 8);
 
 const canonicalUri     = `/${bucket}/${file}`;
@@ -70,13 +66,13 @@ headers: {
 });
 
 if (!response.ok) {
-throw new Error(`R2 error: ${response.status} ${await response.text()}`);
+const errText = await response.text();
+throw new Error(`R2 ${response.status}: ${errText}`);
 }
 
 return await response.json();
 }
 
-// Busca la entrada más parecida a la pregunta del usuario
 function findBestMatch(question, kvData) {
 const questionWords = normalize(question).split(’ ’).filter(w => w.length > 2);
 
@@ -108,7 +104,6 @@ return ‘Lo siento, no tengo información sobre ese tema en mi base de conocimi
 return bestMatch;
 }
 
-// Normaliza texto: minúsculas, sin tildes, sin caracteres especiales
 function normalize(text) {
 return text
 .toLowerCase()
