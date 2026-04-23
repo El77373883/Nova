@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova | Knowledge Base RAG</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="header-content">
+        <div class="logo-area">
+          <div class="icon-bg">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <div class="title-group">
+            <h1>Nova</h1>
+            <span class="badge">RAG Knowledge</span>
+          </div>
+        </div>
+        <div class="status-indicator">
+          <span class="status-dot"></span>
+          <span class="status-text">R2 Connected</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="chat-main">
+      <div class="messages-container" id="messagesContainer">
+        <div class="message assistant">
+          <div class="avatar">
+            <i class="fas fa-cloud"></i>
+          </div>
+          <div class="message-content">
+            <div class="message-header">
+              <span class="sender-name">Nova</span>
+            </div>
+            <div class="message-bubble">
+              <p>Bienvenido. Soy Nova, su interfaz de conocimiento basada en documentos. Mis respuestas se generan exclusivamente a partir del contenido almacenado en Cloudflare R2. Por favor, formule su consulta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="chat-footer">
+      <form id="chatForm" class="input-form">
+        <div class="input-wrapper">
+          <i class="fas fa-file-alt input-icon"></i>
+          <input type="text" id="userInput" placeholder="Pregunte a Nova sobre sus documentos..." autocomplete="off" />
+        </div>
+        <button type="submit" id="sendButton" class="send-button">
+          <i class="fas fa-arrow-up"></i>
+        </button>
+      </form>
+      <p class="footer-note">Nova responde unicamente con informacion verificada del bucket R2.</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
