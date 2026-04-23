@@ -39,7 +39,11 @@ async function fetchKnowledgeFromR2() {
   const authHeader = 'AWS4-HMAC-SHA256 Credential=' + accessKey + '/' + credentialScope + ', SignedHeaders=' + signedHeaders + ', Signature=' + signature;
   const url = endpoint + '/' + bucket + '/knowledge.json';
   const response = await fetch(url, {
-    headers: { 'x-amz-date': amzDate, 'Authorization': authHeader }
+    headers: {
+      'x-amz-date': amzDate,
+      'Authorization': authHeader,
+      'x-amz-content-sha256': payloadHash
+    }
   });
   if (!response.ok) throw new Error('R2 ' + response.status + ': ' + await response.text());
   return await response.json();
