@@ -1,0 +1,31 @@
+{
+  "que es una variable": "Una variable es un espacio en memoria donde puedes guardar un valor. Ejemplo en Python:\n\nnombre = 'Juan'\nedad = 25\nprint(nombre, edad)",
+
+  "como hacer un bucle for en python": "Un bucle for en Python sirve para repetir código. Ejemplo:\n\nfor i in range(5):\n    print(i)\n\nEso imprime los números del 0 al 4.",
+
+  "como hacer un bucle for en javascript": "Un bucle for en JavaScript:\n\nfor (let i = 0; i < 5; i++) {\n  console.log(i);\n}\n\nTambién puedes usar forEach para arrays:\n\n[1,2,3].forEach(num => console.log(num));",
+
+  "que es una funcion": "Una función es un bloque de código reutilizable. Ejemplo en Python:\n\ndef saludar(nombre):\n    return 'Hola ' + nombre\n\nprint(saludar('Juan'))\n\nEn JavaScript:\n\nfunction saludar(nombre) {\n  return 'Hola ' + nombre;\n}",
+
+  "como conectar mysql con python": "Para conectar MySQL con Python necesitas instalar mysql-connector-python:\n\npip install mysql-connector-python\n\nLuego:\n\nimport mysql.connector\n\nconn = mysql.connector.connect(\n  host='localhost',\n  user='root',\n  password='tu_password',\n  database='tu_base_de_datos'\n)\n\ncursor = conn.cursor()\ncursor.execute('SELECT * FROM usuarios')\nresultados = cursor.fetchall()\nprint(resultados)",
+
+  "como hacer un array en javascript": "Un array en JavaScript es una lista de valores:\n\nconst frutas = ['manzana', 'naranja', 'pera'];\n\nconsole.log(frutas[0]); // manzana\nfrutas.push('uva');     // agregar\nfrutas.pop();           // quitar el último",
+
+  "que es una clase en python": "Una clase en Python es una plantilla para crear objetos:\n\nclass Persona:\n    def __init__(self, nombre, edad):\n        self.nombre = nombre\n        self.edad = edad\n\n    def saludar(self):\n        print(f'Hola, soy {self.nombre}')\n\npersona1 = Persona('Ana', 30)\npersona1.saludar()",
+
+  "como hacer un fetch en javascript": "Para hacer una petición HTTP con fetch:\n\nfetch('https://api.ejemplo.com/datos')\n  .then(res => res.json())\n  .then(data => console.log(data))\n  .catch(error => console.error(error));\n\nO con async/await:\n\nasync function obtenerDatos() {\n  const res = await fetch('https://api.ejemplo.com/datos');\n  const data = await res.json();\n  console.log(data);\n}",
+
+  "que es json": "JSON (JavaScript Object Notation) es un formato para guardar y transmitir datos. Ejemplo:\n\n{\n  'nombre': 'Juan',\n  'edad': 25,\n  'hobbies': ['programar', 'leer']\n}\n\nEn Python puedes usarlo así:\n\nimport json\ndata = json.loads('{\"nombre\": \"Juan\"}')\nprint(data['nombre'])",
+
+  "como instalar nodejs": "Para instalar Node.js:\n\n1. Ve a https://nodejs.org\n2. Descarga la versión LTS\n3. Instala el archivo descargado\n4. Verifica en terminal:\n\nnode --version\nnpm --version\n\nSi ves los números de versión, está instalado correctamente.",
+
+  "como crear un servidor con nodejs": "Para crear un servidor básico con Node.js:\n\nconst http = require('http');\n\nconst servidor = http.createServer((req, res) => {\n  res.writeHead(200, {'Content-Type': 'text/plain'});\n  res.end('Hola Mundo');\n});\n\nservidor.listen(3000, () => {\n  console.log('Servidor corriendo en puerto 3000');\n});",
+
+  "que es git": "Git es un sistema de control de versiones. Comandos básicos:\n\ngit init              → inicia un repositorio\ngit add .             → agrega todos los cambios\ngit commit -m 'texto' → guarda los cambios\ngit push              → sube al repositorio remoto\ngit pull              → descarga los cambios remotos\ngit clone URL         → clona un repositorio",
+
+  "como centrar un div en css": "Para centrar un div en CSS hay varias formas:\n\nCon Flexbox (recomendado):\n\n.contenedor {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100vh;\n}\n\nCon Grid:\n\n.contenedor {\n  display: grid;\n  place-items: center;\n  height: 100vh;\n}",
+
+  "que es una api": "Una API (Application Programming Interface) es un conjunto de reglas que permite que dos programas se comuniquen entre sí. Por ejemplo, cuando una app del clima pide los datos del tiempo a un servidor, lo hace a través de una API. Las APIs web normalmente usan HTTP y devuelven datos en formato JSON.",
+
+  "como hacer un if en python": "Un if en Python sirve para tomar decisiones:\n\nedad = 18\n\nif edad >= 18:\n    print('Eres mayor de edad')\nelif edad >= 13:\n    print('Eres adolescente')\nelse:\n    print('Eres menor de edad')\n\nNota: Python usa indentación (espacios) en lugar de llaves."
+}
